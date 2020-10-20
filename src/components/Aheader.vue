@@ -17,16 +17,20 @@
 
         </div>
         <div class="h-bottom">
-            tags
+            <menuTags></menuTags>
         </div>
     </header>
 </template>
 <script>
+import menuTags from "./ATab"
     export default {
         name: "AHeader",
         data() {
             return {
             }
+        },
+        components: {
+            menuTags,
         },
     }
 </script>

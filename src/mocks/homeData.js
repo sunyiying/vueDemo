@@ -42,7 +42,7 @@ export default {
                     label: "用户组织",
                     children: [
                         {
-                            path: "/users",
+                            path: "/user",
                             icon: "location",
                             name: "userInfo",
                             label: "用户信息"

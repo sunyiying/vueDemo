@@ -7,7 +7,11 @@
             <el-header>
                 <Aheader></Aheader>
             </el-header>
-            <el-main>Main</el-main>
+            <el-main>
+                <router-view>
+                    this is main body
+                </router-view>
+            </el-main>
         </el-container>
     </el-container>
 </template>
