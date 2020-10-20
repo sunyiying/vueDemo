@@ -1,12 +1,17 @@
 import axios from "axios";
-import { reject, resolve } from "core-js/fn/promise";
-import { Mesage } from "element-ui";
+import Promise from "promise";
+// import { Mesage } from "element-ui";
 
 axios.defaults.timeout = 5000;
 axios.defaults.baseURL = '';
 
-//请求拦截处理
-axios.intercepters.required.use(
+var service = axios.create({
+    baseURL: '',
+    timeout: 5000
+});
+
+//请求拦截处理 interceptors
+service.interceptors.request.use(
     cfg => {
         cfg.data = JSON.stringfy(cfg.data);
         const token = 'abc';
@@ -21,7 +26,7 @@ axios.intercepters.required.use(
 )
 
 //响应拦截处理
-axios.intercepters.response.use(
+service.interceptors.response.use(
     res => {
         if (res.data.code == 401) {
             //router.pus({path:"/login",query:{redirect:router.currentRoute.fullPath}});
@@ -32,32 +37,37 @@ axios.intercepters.response.use(
     err => {
         return Promise.reject(err);
     }
-)
-  
+);
+
+
+
 /**
  * 封装Get/Post方法   返回 promise
  * @param {*} url 
  * @param {*} method 
  * @param {*} params 
  */
-export function fetch(url, method = "get", params = {}) {
-    return new Promise((resolve, reject) => {
-        if (method.toLowerCase() == "get") {
-            axios.get(url, { params: params })
-                .then(response => {
-                    resolve(response.data);
-                })
-                .catch(err => {
-                    reject(err);
-                })
-        } else {
-            axios.post(url, params)
-                .then(response => {
-                    resolve(response);
-                })
-                .catch(err => {
-                    reject(err);
-                })
+export default
+    {
+        fetch: function fetch(url, method = "get", params = {}) {
+            return new Promise((resolve, reject) => {
+                if (method.toLowerCase() == "get") {
+                    axios.get(url, { params: params })
+                        .then(response => {
+                            resolve(response.data);
+                        })
+                        .catch(err => {
+                            reject(err);
+                        })
+                } else {
+                    axios.post(url, params)
+                        .then(response => {
+                            resolve(response);
+                        })
+                        .catch(err => {
+                            reject(err);
+                        })
+                }
+            })
         }
-    })
-}
+    }

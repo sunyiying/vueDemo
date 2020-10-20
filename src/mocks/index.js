@@ -7,5 +7,5 @@ Mock.setup({
 
 
  
-
+//方法拦截
 Mock.mock(/\/home\/getMenuData/,'get',homeData.getMenuData)

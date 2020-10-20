@@ -42,13 +42,13 @@ export default {
                     label: "用户组织",
                     children: [
                         {
-                            path: "/userInfo",
+                            path: "/users",
                             icon: "location",
                             name: "userInfo",
                             label: "用户信息"
                         },
                         {
-                            path: "/",
+                            path: "/userRole",
                             icon: "location",
                             name: "userRole",
                             label: "用户角色"
@@ -56,7 +56,7 @@ export default {
                     ]
                 },
                 {
-                    path: "/menu",
+                    path: "/module",
                     icon: "menu",
                     name: "module",
                     label: "功能模块",
@@ -84,13 +84,13 @@ export default {
                             path: "/otherOne",
                             icon: "location",
                             name: "otherOne",
-                            label: "其它1",
+                            label: "测试模块一",
                             children: [
                                 {
                                     path: "/o1",
                                     icon: "location",
                                     name: "otherOne",
-                                    label: "其它1-1",
+                                    label: "测试1-1",
                                 }
                             ]
                         },
@@ -98,7 +98,7 @@ export default {
                             path: "/otherTwo",
                             icon: "location",
                             name: "otherTwo",
-                            label: "其它2"
+                            label: "测试模块二"
                         }
                     ]
                 }

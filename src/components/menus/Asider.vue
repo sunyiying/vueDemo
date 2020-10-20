@@ -59,33 +59,6 @@
                                 label: "菜单维护"
                             }
                         ]
-                    }, {
-                        path: "/other",
-                        icon: "menu",
-                        name: "other",
-                        label: "其它模块",
-                        children: [
-                            {
-                                path: "/otherOne",
-                                icon: "location",
-                                name: "otherOne",
-                                label: "其它1",
-                                children: [
-                                    {
-                                        path: "/o1",
-                                        icon: "location",
-                                        name: "otherOne",
-                                        label: "其它1-1",
-                                    }
-                                ]
-                            },
-                            {
-                                path: "/otherTwo",
-                                icon: "location",
-                                name: "otherTwo",
-                                label: "其它2"
-                            }
-                        ]
                     }
                 ],
                 menuData: []
@@ -106,6 +79,13 @@
             handleClose(key, keyPath) {
                 console.log(key, keyPath);
             }
+        },
+        mounted() {
+            this.$http.fetch('/home/getMenuData').then(res => {
+                // console.log(res.code);
+                // console.log(res.data);
+                this.menuData=res.data;
+            })
         },
     }
 </script>
