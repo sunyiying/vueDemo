@@ -42,13 +42,13 @@ export default {
                     label: "用户组织",
                     children: [
                         {
-                            path: "/user",
+                            path: "/Users",
                             icon: "location",
                             name: "userInfo",
                             label: "用户信息"
                         },
                         {
-                            path: "/userRole",
+                            path: "/UserRole",
                             icon: "location",
                             name: "userRole",
                             label: "用户角色"
@@ -62,13 +62,13 @@ export default {
                     label: "功能模块",
                     children: [
                         {
-                            path: "/domain",
+                            path: "/Domains",
                             icon: "location",
                             name: "domain",
                             label: "应用域维护"
                         },
                         {
-                            path: "/menu",
+                            path: "/Menus",
                             icon: "location",
                             name: "menu",
                             label: "菜单维护"
@@ -105,7 +105,5 @@ export default {
             ]
         }
     }
-
-
 }
 

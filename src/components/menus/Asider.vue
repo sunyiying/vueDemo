@@ -1,6 +1,6 @@
 <template>
     <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
-        background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+        background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" :collapse="isCollapsed">
         <menuItem v-for="item in menuData" :key="item.name" :menu="item">
         </menuItem>
     </el-menu>
@@ -61,7 +61,7 @@
                         ]
                     }
                 ],
-                menuData: []
+                menuData: [],
             }
         },
         computed: {
@@ -70,6 +70,10 @@
             },
             hasNoChild() {
                 return this.menuData.filter(c => c.children == undefined || c.children.length == 0 || !c.children);
+            },
+            isCollapsed() {
+                console.log('this.$store.state.Tabs.isCollapse',this.$store.state.Tabs.isCollapse);
+                return  this.$store.state.Tabs.isCollapse;
             }
         },
         methods: {
@@ -81,19 +85,18 @@
             }
         },
         mounted() {
-            this.$http.fetch('/home/getMenuData').then(res => {
-                // console.log(res.code);
-                // console.log(res.data);
-                this.menuData=res.data;
-            })
+            this.$http.fetch('/home/getMenuData').then(res => {               
+                this.menuData = res.data;
+                console.log(res);
+            });
         },
     }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
     .el-menu {
         height: 100%;
         border: none;
-
+        
     }
 
     .el-menu-vertical-demo:not(.el-menu--collapse) {
@@ -101,3 +104,4 @@
         min-height: 400px;
     }
 </style>
+

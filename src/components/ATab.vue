@@ -1,27 +1,46 @@
- <template>
-  <div><span>AAA</span><span>bbbb</span></div>
+<template>
+    <div>
+        <el-tag
+        :key="tag.name"
+        v-for="tag in tags"
+        :closable="tag.name!=='home'"
+        :disable-transitions="false"
+        @click="handleClick(tag)"
+        :effect="$route.name===tag.name?'dark':'plain'"
+        @close="handleClose(tag)">
+        {{tag.label}}
+      </el-tag>
+
+    </div>
 </template>
- <script>
- import {mapState,mapMutations}  from "vuex"
-export default {
-  name: "tags",
-  computed: {
-      ...mapState({
-          tags:state=>state.Tags.tabList
-      }),
-      methods: {
-          ...mapMutations({
-              close:'closeMenu'
-          }),
-          closeTag(tag) {
-             console.log('tag closed',tag) ;
-          },
-          clickTag(tag){
-              console.log('tag clicked',tag);
-          }
-      },
-  },
-};
+<script>
+    import { mapState, mapMutations } from "vuex"
+    export default {
+        computed: {
+            ...mapState({
+                tags: state => state.Tabs.tabList,
+                curMenu:state=>state.Tabs.currentMenu
+            }),
+        },
+        methods: {
+            ...mapMutations({
+                close: 'closeMenu'
+            }),
+            handleClose(tag) {
+                console.log('tag closed', tag);
+                this.$store.commit("closeMenu",tag);
+            },
+            handleClick(tag) {
+                console.log('tag clicked', tag);
+                this.$store.commit("selectMenu", tag);
+                this.$router.push({ name: tag.name });
+            }            
+        },
+    };
 </script>
- <style lang="scss" scoped>
+<style lang="scss" scoped>
+     .el-tag + .el-tag {
+    margin-left: 3px;
+    cursor:pointer;
+  }
 </style>

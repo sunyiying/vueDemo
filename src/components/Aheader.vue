@@ -1,7 +1,7 @@
 <template>
     <header>
         <div class="h-top">
-            <div class="l-left"><span><i class="el-icon-menu"></i>   首页</span></div>
+            <div class="l-left" @click="isCollapseHandle"><span><i class="el-icon-menu"></i>   首页</span></div>
 
             <div class="l-right">
                 <el-dropdown trigger="click">
@@ -32,6 +32,12 @@ import menuTags from "./ATab"
         components: {
             menuTags,
         },
+        methods: {
+            isCollapseHandle() {
+                console.log('collapseMenu-->clicked');
+                this.$store.commit("collapseMenu");
+            }
+        },
     }
 </script>
 <style lang="scss" scoped>
@@ -51,6 +57,7 @@ import menuTags from "./ATab"
             .l-left {
                 width: 100px;
                 padding-left: 5px;
+                cursor: pointer;
                 /* background-color: bisque; */
             }
 

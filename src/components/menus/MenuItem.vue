@@ -53,12 +53,13 @@ export default {
         path: item.index,
         label: item.$attrs["label"],
         name: item.$attrs["name"]
-      };
-      console.log(menu);
-      if (item.index !== "/") {
+      };      
+
+      if (item.index !== "/"&&this.$router.currentRoute.name!==menu.name) {//
         this.$router.push({ path: item.index });
         this.$store.commit("selectMenu", menu);
       }
+       
     }
   }
 };
