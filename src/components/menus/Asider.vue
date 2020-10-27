@@ -103,5 +103,8 @@
         width: 200px;
         min-height: 400px;
     }
+    .el-menu--collapse {
+    width: 50px;
+}
 </style>
 

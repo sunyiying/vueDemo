@@ -30,10 +30,10 @@ export default {
             code: 200,
             data: [
                 {
-                    path: "/",
+                    path: "/home/index",
                     icon: "menu",
                     name: "home",
-                    label: "首页"
+                    label: "首页",                     
                 },
                 {
                     path: "/user",

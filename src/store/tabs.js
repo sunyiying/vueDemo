@@ -1,3 +1,4 @@
+
 export default ({
     state: {
         menus: [],
@@ -15,7 +16,9 @@ export default ({
     },
     mutations: {
         selectMenu(state, selMenu) {
-            console.log('menu select:', selMenu.name);
+            console.log('tab.js  menu select:', selMenu.name);
+            console.log("currentMenu",state.currentMenu);
+            console.log("tabList",state.tabList);
             if (selMenu.name !== "home") {
                 state.currentMenu = selMenu;
                 console.log(state.currentMenu);
@@ -25,6 +28,7 @@ export default ({
                 state.tabList.push(selMenu);
             }
             state.tabList.map(c => {
+                if(state.currentMenu===null)state.currentMenu=state.tabList[0];
                 c.type == c.name === state.currentMenu.name ? "success" : ""
             });
             console.log('menu count', state.tabList.length);
@@ -32,10 +36,12 @@ export default ({
 
         },
         closeMenu(state, selMenu) {
-            if (selMenu.name != "home") {
+            if (selMenu!=null && selMenu.name != "main") {
                 let index = state.tabList.findIndex(c => c.name == selMenu.name);
                 state.tabList.splice(index, 1);
+                state.currentMenu=state.tabList[state.tabList.length-1];
             }
+            console.log('current menu', state.currentMenu);
             console.log('menu count', state.tabList.length);
         },
         collapseMenu(state) {
@@ -43,5 +49,7 @@ export default ({
             console.log('isCollapse==>',state.isCollapse);
         }
     },
-    actions: {}
+    actions: {    
+
+    }
 })

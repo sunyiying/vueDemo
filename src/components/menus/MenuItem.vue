@@ -49,12 +49,13 @@ export default {
   },
   methods: {
     menuClick(item) {
+      console.log('item==>',item)
       var menu = {
         path: item.index,
         label: item.$attrs["label"],
         name: item.$attrs["name"]
       };      
-
+      console.log('menu==>',menu)
       if (item.index !== "/"&&this.$router.currentRoute.name!==menu.name) {//
         this.$router.push({ path: item.index });
         this.$store.commit("selectMenu", menu);

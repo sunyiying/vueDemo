@@ -16,8 +16,7 @@ export default {
                 request.fetch('/home/getMenuData').then(res => {
                     if (res.code == 200) {
                         let routerData = []
-                        GeneralDynamicRouter(res.data, routerData);
-                       
+                        GeneralDynamicRouter(res.data, routerData);                       
                         //  let mainRoute = {
                         //     path: '/',
                         //     component: Layout,
@@ -26,15 +25,25 @@ export default {
                         //     name: 'MenuRoutes',
                         //     children: routes
                         //   }
+                        // routerData.push( 
+                        //     {
+                        //         path: "/index",
+                        //         icon: "location",
+                        //         name: "index",
+                        //         component:()=>import("../views/home/index"),
+                        //         label: "首页"
+                        //     });
 
                         var mainRouter = {
                             path: "/",
-                            name: "main",
+                            name: "home",
+                             redirect:'/home/index',
                             component: () => import("../views/Main.vue"),
                             children: routerData
                         };
+                        console.log('mainRouter',mainRouter);
                         commit("set_router", mainRouter)
-                        resolve([mainRouter,{path:"*",name:"nofound",component: () => import("../views/Main.vue")}]);
+                        resolve([mainRouter,{path:"*",name:"nofound",component: () => import("../views/noFound.vue")}]);
                     }
                     else {
                         reject(res);
@@ -60,7 +69,12 @@ function GeneralDynamicRouter(menus = [], routes = []) {
             GeneralDynamicRouter(m.children, routes);
         }
     })
-    // console.log('加工后路由', routes);
+     console.log('第一次加工后路由', routes);
+    //  routes.forEach(c=>{
+    //     c.path=c.parentPath;
+    //  });
+    //  console.log('第二次加工后路由', routes);
+
 }
 
 export const loadView = (view) => { // 路由懒加载

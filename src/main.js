@@ -16,6 +16,7 @@ router.beforeEach((to, from, next) => {
   console.log('router from :', from.path);
   console.log('router to', to.path);
   var routerAry = store.state.menuRouters.routers;
+  console.log('routerAry', routerAry);
   if (routerAry.length == 0) {
     store.dispatch("GenerateRouter").then(res => {
       console.log('route reload');
@@ -26,6 +27,7 @@ router.beforeEach((to, from, next) => {
         console.log(err);
       });
   }
+  console.log('--------------');
   next();
 });
 

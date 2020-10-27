@@ -29,8 +29,9 @@
             handleClose(tag) {
                 console.log('tag closed', tag);
                 this.$store.commit("closeMenu",tag);
+                this.handleClick(this.$store.state.Tabs.currentMenu);
             },
-            handleClick(tag) {
+            handleClick:function(tag) {
                 console.log('tag clicked', tag);
                 this.$store.commit("selectMenu", tag);
                 this.$router.push({ name: tag.name });
